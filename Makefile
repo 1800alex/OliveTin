@@ -66,3 +66,14 @@ config-tool:
 	cd service && go run cmd/config-tool/main.go
 
 .PHONY: proto service
+
+.PHONY: linux
+linux:
+	-@rm -rf dist webui
+	$(MAKE) webui-dist
+	mkdir -p dist
+	cd service && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../dist/OliveTin -ldflags="-s -w -X main.version=$(shell git describe --tags --always) -X main.commit=$(shell git rev-parse --short HEAD) -X main.date=$(shell date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+.PHONY: alex-server
+alex-server:
+	@bash alex-server.sh

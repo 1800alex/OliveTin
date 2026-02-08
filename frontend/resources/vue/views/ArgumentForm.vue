@@ -497,4 +497,88 @@ form {
   display: inline;
   font-weight: normal;
 }
+
+/* Mobile-responsive improvements */
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  label {
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="url"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    width: 100%;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  /* Make checkboxes easier to tap on mobile */
+  input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-right: 0.75rem;
+  }
+
+  /* Larger tap target for checkbox labels */
+  label[for] {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .argument-description {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .buttons button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    min-height: 44px; /* Apple's recommended minimum tap target */
+    cursor: pointer;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="url"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 0.625rem;
+  }
+
+  .buttons button {
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+  }
+}
 </style>

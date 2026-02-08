@@ -63,3 +63,169 @@ section.small {
 .sm-transparent-footer footer span {
 	background-color: transparent;
 }
+
+/* Mobile-responsive improvements */
+@media (max-width: 768px) {
+	/* Ensure proper touch targets on mobile */
+	button, a, input, select, textarea {
+		min-height: 44px;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+	}
+
+	/* Make the header more compact on mobile */
+	header {
+		padding: 0.5rem;
+	}
+
+	/* Adjust main content padding for mobile */
+	main {
+		padding-top: 3.5em;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	/* Mobile sidebar - make it scrollable and properly sized */
+	aside.sidebar {
+		padding-top: 0 !important;
+		position: fixed !important;
+		top: 0 !important;
+		width: 280px !important;
+		max-width: 80vw !important;
+		height: 100vh !important;
+		overflow-y: auto !important;
+		overflow-x: hidden !important;
+		-webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
+		z-index: 1000 !important;
+		box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2) !important;
+	}
+
+	/* Improve sidebar navigation header */
+	aside.sidebar h2 {
+		position: sticky;
+		top: 0;
+		background: inherit;
+		z-index: 10;
+		margin: 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	/* Improve sidebar navigation links on mobile */
+	aside.sidebar .navigation-links {
+		padding-bottom: 2rem;
+	}
+
+	aside.sidebar .navigation-links li {
+		list-style: none;
+	}
+
+	aside.sidebar .navigation-links a {
+		padding: 1rem 0.75rem !important;
+		min-height: 44px !important;
+		display: flex !important;
+		align-items: center !important;
+		text-decoration: none;
+		border-radius: 0 !important;
+	}
+
+	/* Stick/pin button improvements */
+	aside.sidebar .stick-toggle {
+		min-width: 44px;
+		min-height: 44px;
+	}
+
+	/* Make dialogs more mobile-friendly */
+	dialog {
+		max-width: 95vw;
+		max-height: 90vh;
+		margin: auto;
+	}
+
+	/* Improve section spacing on mobile */
+	section {
+		margin: 0.5rem 0;
+	}
+
+	section.small {
+		border-radius: 0.25em;
+	}
+
+	/* Make the sidebar toggler easier to tap */
+	#sidebar-toggler-button {
+		min-width: 44px;
+		min-height: 44px;
+	}
+
+	/* Ensure buttons in button groups are touch-friendly */
+	div.buttons button {
+		min-height: 44px;
+		padding: 0.75rem 1rem;
+	}
+
+	/* Optional: Horizontal navbar for mobile */
+	/* This provides quick access to main navigation items */
+	.mobile-quick-nav {
+		display: flex;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		background: var(--bg, #fff);
+		border-bottom: 1px solid var(--border-color, #ddd);
+		padding: 0.5rem;
+		gap: 0.5rem;
+		position: sticky;
+		top: 3.5em;
+		z-index: 4;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		scrollbar-width: thin;
+	}
+
+	.mobile-quick-nav::-webkit-scrollbar {
+		height: 4px;
+	}
+
+	.mobile-quick-nav::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 2px;
+	}
+
+	.mobile-quick-nav a {
+		flex-shrink: 0;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		background: var(--bg-alt, #f5f5f5);
+		color: var(--fg, #333);
+		text-decoration: none;
+		white-space: nowrap;
+		font-size: 0.9rem;
+		min-height: 36px;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		border: 1px solid var(--border-color, #ddd);
+	}
+
+	.mobile-quick-nav a.active {
+		background: var(--primary, #007bff);
+		color: white;
+		border-color: var(--primary, #007bff);
+	}
+
+	/* Improve dashboard grid on mobile */
+	fieldset {
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+		gap: 0.75rem;
+		padding: 0.5rem;
+	}
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+	main {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	button, a {
+		min-height: 44px;
+	}
+}
