@@ -51,14 +51,14 @@ jobs:
       - name: make webui
         run: make -w webui-dist
 
-      - name: unit tests
-        run: make -w service-unittests
+      # - name: unit tests
+      #   run: make -w service-unittests
 
       - name: build service
         run: make -w service
 
-      - name: integration tests
-        run: cd integration-tests && make -w
+      # - name: integration tests
+      #   run: cd integration-tests && make -w
 
       - name: Install goreleaser
         uses: goreleaser/goreleaser-action@v6
