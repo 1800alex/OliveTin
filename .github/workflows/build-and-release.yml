@@ -55,23 +55,14 @@ jobs:
       #   run: make -w service-unittests
 
       - name: build service
-        run: make -w service
+        run: |
+          mkdir -p dist && cd service && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../dist/OliveTin-linux-amd64 -ldflags="-s -w" ./
 
       # - name: integration tests
       #   run: cd integration-tests && make -w
 
-      - name: Install goreleaser
-        uses: goreleaser/goreleaser-action@v6
-        with:
-          install-only: true
-
-      - name: release
-        uses: cycjimmy/semantic-release-action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Archive binaries
         uses: actions/upload-artifact@v4.3.1
         with:
-          name: "OliveTin-snapshot-${{ env.DATE }}-${{ github.sha }}"
-          path: dist/OliveTin*.*
+          name: "OliveTin-linux-amd64"
+          path: dist/OliveTin-linux-amd64
