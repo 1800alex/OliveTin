@@ -8,6 +8,8 @@
         <template v-if="actionArguments.length > 0">
 
           <template v-for="arg in actionArguments" :key="arg.name">
+              <!-- Skip rendering confirmation type arguments - we show the confirmation in the button text instead -->
+              <template v-if="arg.type !== 'confirmation'">
               <label :for="arg.name">
                 {{ formatLabel(arg.title) }}
               </label>
@@ -28,16 +30,25 @@
                 </option>
               </select>
               
-              <component v-else :is="getInputComponent(arg)" :id="arg.name" :name="arg.name" 
+              <component v-else :is="getInputComponent(arg)" :id="arg.name" :name="arg.name"
                 :value="(arg.type === 'checkbox' || arg.type === 'confirmation') ? undefined : getArgumentValue(arg)"
                 :checked="(arg.type === 'checkbox' || arg.type === 'confirmation') ? getArgumentValue(arg) : undefined"
-                :list="(arg.suggestions || getBrowserSuggestions(arg).length > 0) ? `${arg.name}-choices` : undefined" 
+                :list="(arg.suggestions || getBrowserSuggestions(arg).length > 0) ? `${arg.name}-choices` : undefined"
                 :type="getInputComponent(arg) !== 'select' ? getInputType(arg) : undefined"
                 :rows="arg.type === 'raw_string_multiline' ? 5 : undefined"
                 :step="arg.type === 'datetime' ? 1 : undefined" :pattern="getPattern(arg)"
                 @input="handleInput(arg, $event)" @change="handleChange(arg, $event)" />
 
-            <span class="argument-description" v-html="arg.description"></span>
+              <span class="argument-description" v-html="arg.description"></span>
+              </template>
+
+              <!-- Show warning message for confirmation type arguments -->
+              <template v-else>
+                <div class="confirmation-warning">
+                  <strong>⚠️ {{ arg.title }}</strong>
+                  <span class="argument-description" v-html="arg.description"></span>
+                </div>
+              </template>
           </template>
         </template>
         <div v-else>
@@ -45,8 +56,8 @@
         </div>
 
         <div class="buttons">
-          <button name="start" type="submit" :disabled="hasConfirmation && !confirmationChecked">
-            Start
+          <button name="start" type="submit">
+            {{ hasConfirmation ? 'Confirm & Start' : 'Start' }}
           </button>
           <button name="cancel" type="button" @click="handleCancel">
             Cancel
@@ -477,6 +488,28 @@ form {
   font-size: 0.875rem;
   color: #666;
   margin-top: 0.25rem;
+}
+
+/* Confirmation warning styling */
+.confirmation-warning {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 0.5rem;
+  color: #856404;
+}
+
+.confirmation-warning strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.confirmation-warning .argument-description {
+  color: #856404;
+  margin-top: 0.5rem;
 }
 
 .buttons {
