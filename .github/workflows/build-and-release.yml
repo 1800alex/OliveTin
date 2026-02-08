@@ -66,13 +66,7 @@ jobs:
           install-only: true
 
       - name: release
-        if: github.ref_type != 'tag'
         uses: cycjimmy/semantic-release-action@v4
-        with:
-          extra_plugins: |
-            @semantic-release/commit-analyzer
-            @semantic-release/exec
-            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
