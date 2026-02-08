@@ -63,3 +63,68 @@ section.small {
 .sm-transparent-footer footer span {
 	background-color: transparent;
 }
+
+/* Mobile-responsive improvements */
+@media (max-width: 768px) {
+	/* Ensure proper touch targets on mobile */
+	button, a, input, select, textarea {
+		min-height: 44px;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+	}
+
+	/* Make the header more compact on mobile */
+	header {
+		padding: 0.5rem;
+	}
+
+	/* Adjust main content padding for mobile */
+	main {
+		padding-top: 3.5em;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	aside {
+		padding-top: 3.5em;
+	}
+
+	/* Make dialogs more mobile-friendly */
+	dialog {
+		max-width: 95vw;
+		max-height: 90vh;
+		margin: auto;
+	}
+
+	/* Improve section spacing on mobile */
+	section {
+		margin: 0.5rem 0;
+	}
+
+	section.small {
+		border-radius: 0.25em;
+	}
+
+	/* Make the sidebar toggler easier to tap */
+	#sidebar-toggler-button {
+		min-width: 44px;
+		min-height: 44px;
+	}
+
+	/* Ensure buttons in button groups are touch-friendly */
+	div.buttons button {
+		min-height: 44px;
+		padding: 0.75rem 1rem;
+	}
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+	main {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	button, a {
+		min-height: 44px;
+	}
+}
