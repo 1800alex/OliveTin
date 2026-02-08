@@ -87,7 +87,7 @@ nfpms:
   - id: default
     maintainer: James Read <contact@jread.com>
     description: OliveTin is a web interface for running Linux shell commands.
-    homepage: https://github.com/OliveTin/OliveTin
+    homepage: https://github.com/1800alex/OliveTin
     license: AGPL-3.0
     formats:
       - deb
@@ -119,7 +119,7 @@ nfpms:
   - id: openrc
     maintainer: James Read <contact@jread.com>
     description: OliveTin is a web interface for running Linux shell commands.
-    homepage: https://github.com/OliveTin/OliveTin
+    homepage: https://github.com/1800alex/OliveTin
     license: AGPL-3.0
     formats:
       - apk
